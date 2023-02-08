@@ -1,31 +1,31 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import './sass/index.scss'
 
-  const [count, setCount] = useState(0)
+const Form = () => {
+  const [cocktail, setCocktail] = useState('');
+  const headers = new Headers({
+    'X-Api-Key': import.meta.env.NINJA_KEY
+  });
+
+  const getCocktails = (e) => {
+    e.preventDefault();
+    fetch(`https://api.api-ninjas.com/v1/cocktail?name=${cocktail}`, { headers })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => console.log(data))
+    .catch(error => console.error('Request failed:', error));
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <form onSubmit={getCocktails}>
+      <input type="search" value={cocktail} onChange={e => setCocktail(e.target.value)} />
+      <input type="submit" value="Submit" />
+    </form>
   )
-}
+};
 
-export default App
+export default Form;
