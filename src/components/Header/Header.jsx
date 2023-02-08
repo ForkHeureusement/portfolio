@@ -1,5 +1,3 @@
-import React from 'react'
-import logo from '../../assets/logo.svg'
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -17,7 +15,7 @@ export default function Header() {
    return (
       <header className="header">
          <div className="logo__container">
-            <img onClick={goToHome} src={logo} alt="Kasa" className="logo" />
+            <img onClick={goToHome} src="" alt="logo" className="logo" />
          </div>
          <nav className="nav">
             <ul className="nav__bar">

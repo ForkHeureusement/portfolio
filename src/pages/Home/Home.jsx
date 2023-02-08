@@ -1,7 +1,8 @@
+import Form from "../../components/Form"
 export default function Home() {
    return (
       <div className="home">
-         <div>FOOO514</div>
+            <Form />
       </div>
    )
 }
